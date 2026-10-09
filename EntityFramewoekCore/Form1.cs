@@ -1,10 +1,11 @@
+using EntityFramewoekCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.EntityFrameworkCore;
 namespace EntityFramewoekCore
 {
     public partial class Form1 : Form
@@ -16,7 +17,20 @@ namespace EntityFramewoekCore
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            lblTrangThai.Text = "Sẵn sàng. Hãy chạy Migration trước khi dùng.";
+            try
+            {
+                // Tự tạo database / áp dụng migration nếu chưa có
+                using (var context = new AppDbContext())
+                {
+                    await context.Database.MigrateAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblTrangThai.Text = "Lỗi kết nối DB: " + ex.Message;
+                lblTrangThai.ForeColor = Color.Red;
+                return;
+            }
             await TaiDanhSach();
         }
         private async Task TaiDanhSach()

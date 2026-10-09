@@ -1,4 +1,6 @@
-﻿namespace EntityFramewoekCore
+﻿using EntityFramewoekCore;
+
+namespace EntityFramewoekCore
 {
     partial class Form1
     {
@@ -51,6 +53,7 @@
             dgvSinhVien.RowHeadersWidth = 51;
             dgvSinhVien.Size = new Size(798, 195);
             dgvSinhVien.TabIndex = 0;
+            dgvSinhVien.SelectionChanged += dgvSinhVien_SelectionChanged;
             // 
             // btnTaiLai
             // 
@@ -166,8 +169,21 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 493);
+            Controls.Add(lblTrangThai);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(btnLoc);
+            Controls.Add(btnXoa);
+            Controls.Add(btnSua);
+            Controls.Add(btnThem);
+            Controls.Add(label1);
+            Controls.Add(txtDiem);
+            Controls.Add(txtHoTen);
+            Controls.Add(btnTaiLai);
+            Controls.Add(dgvSinhVien);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Quản lý sinh viên";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).EndInit();
             ResumeLayout(false);
         }
